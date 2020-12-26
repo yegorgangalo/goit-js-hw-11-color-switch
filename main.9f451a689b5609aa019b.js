@@ -26,18 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
   \*****************************/
 /***/ (() => {
 
-eval("var colors = ['#FFFFFF', '#2196F3', '#4CAF50', '#FF9800', '#009688', '#795548'];\n\nvar randomIntegerFromInterval = function randomIntegerFromInterval(min, max) {\n  return Math.floor(Math.random() * (max - min + 1) + min);\n};\n\nvar bodyRef = document.querySelector('body');\nvar btnStart = document.querySelector('button[data-action=\"start\"]');\nvar btnStop = document.querySelector('button[data-action=\"stop\"]');\n\nfunction colorChange() {\n  var i = randomIntegerFromInterval(0, colors.length - 1);\n  bodyRef.style.backgroundColor = colors[i];\n  console.log(colors[i]);\n}\n/* ==========var-1============================================= */\n// let timerId = null;\n// function setIntervalChange() {\n//     timerId = setInterval(colorChange, 1000);\n//     btnStart.removeEventListener('click', setIntervalChange);\n// }\n// function clearIntervalChange() {\n//     clearInterval(timerId);\n//     btnStart.addEventListener('click', setIntervalChange);\n// }\n// btnStart.addEventListener('click', setIntervalChange);\n// btnStop.addEventListener('click', clearIntervalChange);\n\n/* ==========end var-1============================================= */\n\n/* ===========var-2============================================ */\n\n\nvar bodyColorChange = {\n  isActive: false,\n  timerId: null,\n  start: function start() {\n    if (this.isActive) {\n      return;\n    }\n\n    this.timerId = setInterval(colorChange, 1000);\n    this.isActive = true;\n  },\n  stop: function stop() {\n    clearInterval(this.timerId);\n    this.isActive = false;\n  }\n};\nbtnStart.addEventListener('click', bodyColorChange.start.bind(bodyColorChange));\nbtnStop.addEventListener('click', bodyColorChange.stop.bind(bodyColorChange));\n/* ===========end var-2============================================ */\n\n//# sourceURL=webpack://webpack-v2/./src/js/my-script.js?");
-
-/***/ }),
-
-/***/ "./src/images/sprite.svg":
-/*!*******************************!*
-  !*** ./src/images/sprite.svg ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"images/sprite.svg\");\n\n//# sourceURL=webpack://webpack-v2/./src/images/sprite.svg?");
+eval("// const colors = [\n//   '#FFFFFF',\n//   '#2196F3',\n//   '#4CAF50',\n//   '#FF9800',\n//   '#009688',\n//   '#795548',\n// ];\n// const randomIntegerFromInterval = (min, max) => {\n//   return Math.floor(Math.random() * (max - min + 1) + min);\n// };\n// const bodyRef = document.querySelector('body');\n// const btnStart = document.querySelector('button[data-action=\"start\"]');\n// const btnStop = document.querySelector('button[data-action=\"stop\"]');\n// function colorChange() {\n//     let i = randomIntegerFromInterval(0, colors.length - 1);\n//     bodyRef.style.backgroundColor = colors[i];\n//     console.log(colors[i]);\n// }\n\n/* ==========var-1============================================= */\n// let timerId = null;\n// function setIntervalChange() {\n//     timerId = setInterval(colorChange, 1000);\n//     btnStart.removeEventListener('click', setIntervalChange);\n// }\n// function clearIntervalChange() {\n//     clearInterval(timerId);\n//     btnStart.addEventListener('click', setIntervalChange);\n// }\n// btnStart.addEventListener('click', setIntervalChange);\n// btnStop.addEventListener('click', clearIntervalChange);\n\n/* ==========end var-1============================================= */\n\n/* ===========var-2============================================ */\nvar bodyColorChange = {\n  isActive: false,\n  timerId: null,\n  colors: ['#FFFFFF', '#2196F3', '#4CAF50', '#FF9800', '#009688', '#795548'],\n  currentColorIndex: '',\n  refs: {\n    btnStart: document.querySelector('button[data-action=\"start\"]'),\n    btnStop: document.querySelector('button[data-action=\"stop\"]'),\n    bodyRef: document.querySelector('body')\n  },\n  start: function start() {\n    if (this.isActive) {\n      return;\n    }\n\n    this.timerId = setInterval(this.colorChange.bind(bodyColorChange), 1000);\n    this.isActive = true;\n    this.refs.btnStart.setAttribute('disabled', '');\n  },\n  stop: function stop() {\n    clearInterval(this.timerId);\n    this.isActive = false;\n    this.refs.btnStart.removeAttribute('disabled');\n  },\n  colorChange: function colorChange() {\n    var i = this.randomIntegerFromInterval(0, this.colors.length - 1);\n\n    if (i === this.currentColorIndex) {\n      this.colorChange();\n      return;\n    }\n\n    ;\n    this.refs.bodyRef.style.backgroundColor = this.colors[i];\n    this.currentColorIndex = i;\n  },\n  randomIntegerFromInterval: function randomIntegerFromInterval(min, max) {\n    return Math.floor(Math.random() * (max - min + 1) + min);\n  }\n};\nvar _bodyColorChange$refs = bodyColorChange.refs,\n    btnStart = _bodyColorChange$refs.btnStart,\n    btnStop = _bodyColorChange$refs.btnStop;\nbtnStart.addEventListener('click', bodyColorChange.start.bind(bodyColorChange));\nbtnStop.addEventListener('click', bodyColorChange.stop.bind(bodyColorChange));\n/* ===========end var-2============================================ */\n\n//# sourceURL=webpack://webpack-v2/./src/js/my-script.js?");
 
 /***/ }),
 
@@ -78,9 +67,9 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 /*!***********************************************!*
   !*** ./src/images/ sync \.(png|svg|jpg|gif)$ ***!
   \***********************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((module) => {
 
-eval("var map = {\n\t\"./sprite.svg\": \"./src/images/sprite.svg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/images sync recursive \\\\.(png|svg|jpg|gif)$\";\n\n//# sourceURL=webpack://webpack-v2/./src/images/_sync_\\.(png%7Csvg%7Cjpg%7Cgif)$?");
+eval("function webpackEmptyContext(req) {\n\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\te.code = 'MODULE_NOT_FOUND';\n\tthrow e;\n}\nwebpackEmptyContext.keys = () => [];\nwebpackEmptyContext.resolve = webpackEmptyContext;\nwebpackEmptyContext.id = \"./src/images sync recursive \\\\.(png|svg|jpg|gif)$\";\nmodule.exports = webpackEmptyContext;\n\n//# sourceURL=webpack://webpack-v2/./src/images/_sync_\\.(png%7Csvg%7Cjpg%7Cgif)$?");
 
 /***/ })
 
@@ -148,11 +137,6 @@ eval("var map = {\n\t\"./sprite.svg\": \"./src/images/sprite.svg\"\n};\n\n\nfunc
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		__webpack_require__.p = "";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
